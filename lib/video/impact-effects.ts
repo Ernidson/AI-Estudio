@@ -1,0 +1,2 @@
+import type {VideoDocument} from './model';
+export function impactShake(doc:Pick<VideoDocument,'tracks'>&Partial<Pick<VideoDocument,'groups'>>,time:number){let x=0,y=0;for(const c of doc.tracks.filter(t=>!t.hidden).flatMap(t=>t.clips).filter(c=>!c.hidden&&!doc.groups?.some(g=>g.id===c.groupId&&g.hidden)))for(const hit of c.impacts||[]){const u=time-(c.start+hit.time-(c.motionOffset||0));if(hit.shake&&u>=0&&u<hit.duration&&time>=c.start&&time<=c.start+c.duration){const f=(1-u/hit.duration)*hit.intensity;x+=Math.sin(u*110)*.3*f;y+=Math.cos(u*90)*.2*f}}return{x,y}}

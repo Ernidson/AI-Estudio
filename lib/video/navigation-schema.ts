@@ -1,0 +1,3 @@
+import {z} from 'zod';
+export const occupancySchema=z.object({version:z.literal(1),kind:z.enum(['decorative','blocking','cover','platform','ground']),passable:z.boolean(),x:z.number().min(0).max(100),y:z.number().min(0).max(100),width:z.number().min(0).max(100),height:z.number().min(0).max(100),depth:z.number().min(-100).max(100),visualHeight:z.number().min(0).max(100)});
+export const navigationSchema=z.object({version:z.literal(1),enabled:z.boolean(),footX:z.number().min(0).max(100),footY:z.number().min(0).max(110),radius:z.number().min(0).max(15),depth:z.number().min(-100).max(100),mass:z.enum(['light','normal','heavy']),groundLock:z.boolean(),issues:z.array(z.string().max(400)).max(100).optional()});

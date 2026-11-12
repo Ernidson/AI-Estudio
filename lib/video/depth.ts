@@ -1,0 +1,5 @@
+import type {Clip,VideoDocument,Transform} from './model';
+import {easeAt} from './channels';
+function sample(keys:any[],t:number,field:string,fallback:number){if(!keys.length)return fallback;const sorted=[...keys].sort((a,b)=>a.time-b.time);if(t<=sorted[0].time)return sorted[0][field];if(t>=sorted.at(-1).time)return sorted.at(-1)[field];const i=sorted.findIndex(k=>k.time>t),a=sorted[i-1],b=sorted[i],u=easeAt((t-a.time)/(b.time-a.time),a.easing);return a[field]+(b[field]-a[field])*u}
+export function depthOffset(doc:VideoDocument,c:Clip,time:number){if(!c.depth)return{x:0,y:0,scale:1};const camera=doc.camera||{x:50,y:50,zoom:1,keys:[]},p=c.depth.parallax,x=sample(camera.positionKeys??camera.keys,time,'x',camera.x),y=sample(camera.positionKeys??camera.keys,time,'y',camera.y),z=sample(camera.zoomKeys??camera.keys,time,'zoom',camera.zoom);return{x:(x-50)*(1-p),y:(y-50)*(1-p),scale:Math.max(.05,1+(z-1)*p)/z}}
+export function depthTransform(doc:VideoDocument,c:Clip,time:number,t:Transform){const d=depthOffset(doc,c,time);return{...t,x:t.x+d.x,y:t.y+d.y,scale:t.scale*d.scale}}

@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import {readFileSync} from 'node:fs';
+import React from 'react';
+import {renderToStaticMarkup} from 'react-dom/server';
+import sharp from 'sharp';
+import {load} from './test-video.mjs';
+const rigModel=load('lib/video/rig.ts'),interaction=load('lib/video/rig-interaction.ts'),model=load('lib/video/model.ts');
+const {skinMatrix,transformPixel,dragVisualPart,visualBinding,isEffector}=interaction;
+const near=(a,b,tol=.5)=>assert.ok(Math.abs(a-b)<tol,`${a} != ${b}`);
+const d=model.articulatedDemoDocument(),rig=d.tracks[2].clips[0].rig;
+const source={id:'builtin-puppet',width:400,height:620,url:'data:image/png;base64,'+readFileSync('public/video-demo/puppet.png').toString('base64')};
+const hand=rig.parts.find(p=>p.jointId==='left-wrist'),upper=rig.parts.find(p=>p.jointId==='left-shoulder'),lower=rig.parts.find(p=>p.jointId==='left-elbow'),head=rig.parts.find(p=>p.jointId==='head');
+const before=structuredClone(rig),from=transformPixel(skinMatrix(rig,hand.id,0),{x:125,y:395}),to={x:from.x-75,y:from.y-175};
+const wristBefore=rigModel.forward(rig,rigModel.anglesAt(rig,0))['left-wrist'];
+dragVisualPart(rig,hand.id,from,to,0,true,'smooth');
+const wristAfter=rigModel.forward(rig,rigModel.anglesAt(rig,0))['left-wrist'];near(wristAfter.x,wristBefore.x-75);near(wristAfter.y,wristBefore.y-175);
+assert.notDeepEqual(skinMatrix(rig,upper.id,0),skinMatrix(before,upper.id,0));assert.notDeepEqual(skinMatrix(rig,lower.id,0),skinMatrix(before,lower.id,0));assert.deepEqual(skinMatrix(rig,head.id,0),skinMatrix(before,head.id,0));
+assert.ok(rig.joints.find(j=>j.id==='left-shoulder').keys.some(k=>k.time===0));assert.ok(rig.joints.find(j=>j.id==='left-elbow').keys.some(k=>k.time===0));console.log('PASS dragging the drawn hand moves both skinned arm parts, preserves grab offset and records keys.');
+const headWorld=rigModel.forward(rig,rigModel.anglesAt(rig,0))['head'],headFrom={x:headWorld.x,y:headWorld.y-35},headTo={x:headWorld.x+25,y:headWorld.y-25};const headMatrix=skinMatrix(rig,head.id,0);dragVisualPart(rig,head.id,headFrom,headTo,0,true,'smooth');assert.notDeepEqual(skinMatrix(rig,head.id,0),headMatrix);assert.equal(isEffector(rig,'head'),false);console.log('PASS dragging the head rotates the head artwork instead of running arm IK.');
+const chain=rigModel.emptyRig({id:'source',name:'Straight',width:400,height:620});chain.joints=[['a',null,100],['b','a',200],['c','b',300]].map(([id,parentId,x])=>({id,name:id,parentId,x,y:100,rotation:0,min:-160,max:160,keys:[]}));const solved=rigModel.solveIK(chain,'c',{x:250,y:100},0);const result=rigModel.forward(chain,solved).c;near(result.x,250,.2);near(result.y,100,.2);assert.ok(Math.abs(solved.b)>10);console.log('PASS initially straight arm bends for an inward collinear target (previous CCD singularity).');
+const ana=model.builtinAssets.find(a=>a.id==='builtin-ana'),anaRig=rigModel.humanoidRig(ana);assert.equal(visualBinding(anaRig).ready,false);assert.equal(visualBinding(rig).ready,true);assert.equal(visualBinding(rig).affected('left-shoulder'),true);console.log('PASS Ana generic skeleton is correctly classified as unprepared, not as animated artwork.');
+const separate=structuredClone(before);const part=rigModel.cropPart(separate,{id:'arm-file',width:100,height:200},'left-elbow',{x:0,y:0,width:100,height:200,polygon:[]});separate.parts=[part];const separateBefore=skinMatrix(separate,part.id,0);rigModel.setJointAngle(separate,'left-shoulder',90,0,true,'smooth');assert.notDeepEqual(skinMatrix(separate,part.id,0),separateBefore);console.log('PASS separate-image part inherits parent bone transforms.');
+const Figure=load('components/video/RigFigure.tsx').default;
+async function raster(rig){const svg=renderToStaticMarkup(React.createElement(Figure,{rig,time:0,assets:[source]}));assert.ok(svg.includes('data-skin-matrix'));assert.ok(!svg.includes('<use'));return sharp(Buffer.from(svg)).ensureAlpha().raw().toBuffer()}
+const a=await raster(before),b=await raster(rig);let pixels=0;for(let i=0;i<a.length;i+=4)if(Math.abs(a[i]-b[i])+Math.abs(a[i+1]-b[i+1])+Math.abs(a[i+2]-b[i+2])+Math.abs(a[i+3]-b[i+3])>40)pixels++;assert.ok(pixels>1000,`Only ${pixels} changed pixels`);console.log(`PASS real artwork renderer changes ${pixels} pixels after hand/head drags, with no skeleton overlay.`);
+for(const [time,delta] of [[2,{x:-40,y:-100}],[4,{x:20,y:-50}]]){const w=rigModel.forward(rig,rigModel.anglesAt(rig,time))['left-wrist'];dragVisualPart(rig,hand.id,w,{x:w.x+delta.x,y:w.y+delta.y},time,true,'smooth')}
+const route=load('app/api/video/route.ts'),id=randomUUID();const response=await route.POST(new Request('https://test/api/video',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id,title:'Mouse binding regression',data:d})}));assert.equal(response.status,201);const reloaded=(await (await route.GET(new Request('https://test/api/video?id='+id))).json()).project.data.tracks[2].clips[0].rig;
+for(const t of [0,1,2,3,4])for(const part of [hand,upper,lower,head])assert.deepEqual(skinMatrix(reloaded,part.id,t),skinMatrix(rig,part.id,t));console.log('PASS all three mouse-created poses and skinned matrices survive save/reload through the API.');
+console.log('Technical regression passed. Browser interaction remains a separate mandatory acceptance test.');

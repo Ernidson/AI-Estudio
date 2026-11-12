@@ -1,0 +1,6 @@
+import {z} from 'zod';
+const p=z.object({x:z.number().min(-200).max(300),y:z.number().min(-200).max(300)});
+export const hitboxSchema=z.object({enabled:z.boolean(),x:z.number().min(0).max(100),y:z.number().min(0).max(100),width:z.number().min(1).max(100),height:z.number().min(1).max(100)}).refine(b=>b.x+b.width<=100.001&&b.y+b.height<=100.001,'Área fora da imagem.');
+export const impactSchema=z.object({id:z.string().max(100),time:z.number().min(0).max(1500),animationId:z.string().max(100),targetId:z.string().max(100),x:z.number(),y:z.number(),localX:z.number(),localY:z.number(),intensity:z.number().min(.1).max(2),effect:z.enum(['sparks','flash','shockwave']),shake:z.boolean(),duration:z.number().min(.1).max(2)});
+export const flightSchema=z.object({groupId:z.string().max(100),targetId:z.string().max(100),release:z.number().min(0).max(300),duration:z.number().min(.05).max(10),control:p,end:p,curved:z.boolean(),behavior:z.enum(['stick','bounce','fall','vanish']),intensity:z.number().min(.1).max(2),effect:z.enum(['sparks','flash','shockwave']),shake:z.boolean(),recoil:z.boolean(),soundAssetId:z.string().max(100).optional(),groundY:z.number().min(0).max(100)});
+export const defaultHitbox={enabled:true,x:25,y:15,width:50,height:70};

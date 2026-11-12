@@ -1,0 +1,7 @@
+import manifest from './episode-manifest.json';
+import type {Asset} from './model';
+export const episodeManifest=manifest;
+export const episodeGroups:Record<string,string>={Arqueira_A3:'Arqueira A3',PEKKA:'P.E.K.K.A.',Mentora:'Mãe/Mentora',Cenarios:'Cenários',Efeitos:'Efeitos'};
+export function episodeEntry(id:string){return manifest.assets.find(a=>a.id===id||'ep01-'+a.id===id)}
+export const episodeAssets:Asset[]=manifest.assets.map(a=>({id:'ep01-'+a.id,name:a.fileName,type:'image',category:a.category==='Cenarios'?'scenery':a.category==='Efeitos'?'image':a.role==='acessorio'?'object':a.role==='imagem_mestra'?'character':'pose',mime:'image/png',size:a.size,duration:0,width:a.width,height:a.height,group:episodeGroups[a.category],url:'/ep01/'+a.archivePath,builtin:true,episode:{package:'EP01',sourceId:a.id,status:'prototipo',hash:a.sha256,originalPath:a.archivePath,flipX:a.mirrorAtImport,alphaMin:a.alphaExtrema[0],alphaMax:a.alphaExtrema[1],version:1,pivot:null,anchors:null,layer:null}}));
+export async function episodeIdentity(owner:string,id:string,hash:string){const bytes=new TextEncoder().encode(owner+'\0EP01\0'+id+'\0'+hash),digest=new Uint8Array(await crypto.subtle.digest('SHA-256',bytes));digest[6]=(digest[6]&15)|80;digest[8]=(digest[8]&63)|128;const h=Array.from(digest.slice(0,16),x=>x.toString(16).padStart(2,'0')).join('');return h.slice(0,8)+'-'+h.slice(8,12)+'-'+h.slice(12,16)+'-'+h.slice(16,20)+'-'+h.slice(20)}

@@ -1,0 +1,3 @@
+import {z} from 'zod';
+const correction=z.object({x:z.number().min(-120).max(120),y:z.number().min(-120).max(120),rotation:z.number().min(-15).max(15),scale:z.number().min(.85).max(1.2),order:z.number().min(-100).max(100).optional()});
+export const compensationSchema=correction.extend({version:z.literal(1),enabled:z.boolean(),driver:z.string().max(100).optional(),poses:z.array(correction.extend({angle:z.number().min(-360).max(360)})).max(16),source:z.enum(['manual','profile','pixel-fit']),terminal:z.object({x:z.number().min(0).max(100),y:z.number().min(0).max(100),soleY:z.number().min(0).max(100)}).optional()});

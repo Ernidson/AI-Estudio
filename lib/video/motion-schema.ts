@@ -1,0 +1,3 @@
+import {z} from 'zod';
+export const customMotionSchema=z.object({id:z.string().min(1).max(100),name:z.string().trim().min(1).max(100),duration:z.number().min(.1).max(300),sourceWidth:z.number().positive(),joints:z.array(z.object({role:z.string().max(100),keys:z.array(z.object({time:z.number().min(0).max(300),angle:z.number().min(-720).max(720),easing:z.enum(['linear','smooth','ease-in','ease-out'])})).max(80)})).max(32),position:z.array(z.object({time:z.number().min(0).max(300),x:z.number().min(-500).max(500),y:z.number().min(-500).max(500)})).max(160)});
+export type CustomMotion= z.infer<typeof customMotionSchema>;

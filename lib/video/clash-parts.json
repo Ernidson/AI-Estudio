@@ -1,0 +1,227 @@
+[
+  {
+    "key": "archer-arm-mirror",
+    "width": 37,
+    "height": 95
+  },
+  {
+    "key": "archer-arm",
+    "width": 37,
+    "height": 95
+  },
+  {
+    "key": "archer-arrow",
+    "width": 191,
+    "height": 42
+  },
+  {
+    "key": "archer-assembled",
+    "width": 400,
+    "height": 620
+  },
+  {
+    "key": "archer-bow",
+    "width": 119,
+    "height": 301
+  },
+  {
+    "key": "archer-cape",
+    "width": 183,
+    "height": 183
+  },
+  {
+    "key": "archer-foot-mirror",
+    "width": 41,
+    "height": 38
+  },
+  {
+    "key": "archer-foot",
+    "width": 41,
+    "height": 38
+  },
+  {
+    "key": "archer-forearm-mirror",
+    "width": 37,
+    "height": 43
+  },
+  {
+    "key": "archer-forearm",
+    "width": 37,
+    "height": 43
+  },
+  {
+    "key": "archer-hand-mirror",
+    "width": 42,
+    "height": 40
+  },
+  {
+    "key": "archer-hand",
+    "width": 42,
+    "height": 40
+  },
+  {
+    "key": "archer-head-scared",
+    "width": 136,
+    "height": 137
+  },
+  {
+    "key": "archer-head",
+    "width": 148,
+    "height": 137
+  },
+  {
+    "key": "archer-hood",
+    "width": 155,
+    "height": 113
+  },
+  {
+    "key": "archer-leg",
+    "width": 41,
+    "height": 92
+  },
+  {
+    "key": "archer-quiver",
+    "width": 95,
+    "height": 198
+  },
+  {
+    "key": "archer-shin-mirror",
+    "width": 41,
+    "height": 69
+  },
+  {
+    "key": "archer-shin",
+    "width": 41,
+    "height": 69
+  },
+  {
+    "key": "archer-skirt",
+    "width": 142,
+    "height": 76
+  },
+  {
+    "key": "archer-thigh-mirror",
+    "width": 25,
+    "height": 30
+  },
+  {
+    "key": "archer-thigh",
+    "width": 25,
+    "height": 30
+  },
+  {
+    "key": "archer-torso",
+    "width": 109,
+    "height": 119
+  },
+  {
+    "key": "archer-upper-arm-mirror",
+    "width": 37,
+    "height": 47
+  },
+  {
+    "key": "archer-upper-arm",
+    "width": 37,
+    "height": 47
+  },
+  {
+    "key": "pekka-assembled",
+    "width": 400,
+    "height": 620
+  },
+  {
+    "key": "pekka-foot-mirror",
+    "width": 82,
+    "height": 42
+  },
+  {
+    "key": "pekka-foot",
+    "width": 82,
+    "height": 42
+  },
+  {
+    "key": "pekka-forearm-mirror",
+    "width": 60,
+    "height": 95
+  },
+  {
+    "key": "pekka-forearm",
+    "width": 60,
+    "height": 95
+  },
+  {
+    "key": "pekka-hand-mirror",
+    "width": 67,
+    "height": 68
+  },
+  {
+    "key": "pekka-hand",
+    "width": 67,
+    "height": 68
+  },
+  {
+    "key": "pekka-head",
+    "width": 165,
+    "height": 115
+  },
+  {
+    "key": "pekka-hips",
+    "width": 198,
+    "height": 148
+  },
+  {
+    "key": "pekka-leg",
+    "width": 82,
+    "height": 101
+  },
+  {
+    "key": "pekka-shin-mirror",
+    "width": 82,
+    "height": 76
+  },
+  {
+    "key": "pekka-shin",
+    "width": 82,
+    "height": 76
+  },
+  {
+    "key": "pekka-shoulder-mirror",
+    "width": 111,
+    "height": 94
+  },
+  {
+    "key": "pekka-shoulder",
+    "width": 111,
+    "height": 94
+  },
+  {
+    "key": "pekka-sword",
+    "width": 91,
+    "height": 346
+  },
+  {
+    "key": "pekka-thigh-mirror",
+    "width": 57,
+    "height": 42
+  },
+  {
+    "key": "pekka-thigh",
+    "width": 57,
+    "height": 42
+  },
+  {
+    "key": "pekka-torso",
+    "width": 158,
+    "height": 165
+  },
+  {
+    "key": "pekka-upper-arm-mirror",
+    "width": 62,
+    "height": 111
+  },
+  {
+    "key": "pekka-upper-arm",
+    "width": 62,
+    "height": 111
+  }
+]

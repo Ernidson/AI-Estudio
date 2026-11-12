@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1793742549343,
+      "tag": "0000_left_lucky_pierre",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1793832275954,
+      "tag": "0001_happy_wendell_rand",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1793835277936,
+      "tag": "0002_elite_bloodstorm",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1793840800495,
+      "tag": "0003_tiny_clint_barton",
+      "breakpoints": true
+    }
+  ]
+}

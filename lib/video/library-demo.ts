@@ -1,0 +1,5 @@
+import {emptyDocument,makeClip,builtinAssets} from './model';
+import {applyKnownVisuals} from './character-rigs';
+import {addPreparedAccessory} from './prepared-scenes';
+import {applyMotion,defaultMotion} from './motion-library';
+export function libraryDemo(archer=false){const d=emptyDocument();d.width=720;d.height=1280;d.duration=14;const c=makeClip('image',archer?'Arqueira · recuo e dois disparos':'P.E.K.K.A. · caminhada e ataque',0,14,archer?'prepared-archer-sheet':'prepared-pekka-sheet');c.width=155;c.transform.x=60;c.transform.y=51;applyKnownVisuals(c);d.tracks[2].clips=[c];addPreparedAccessory(d,c,archer?'bow':'sword');applyMotion(d,builtinAssets,c.id,archer?'run-back':'walk-forward',{...defaultMotion,distance:8,duration:3});if(archer)applyMotion(d,builtinAssets,c.id,'bow-shot',{...defaultMotion,start:3,duration:4,repeat:2,distance:8});else{applyMotion(d,builtinAssets,c.id,'ready',{...defaultMotion,start:3,duration:1});applyMotion(d,builtinAssets,c.id,'sword-diagonal',{...defaultMotion,start:4,duration:3});}return d}

@@ -1,0 +1,448 @@
+{
+  "layouts": {
+    "pekka": [
+      [
+        "Coxa esquerda",
+        "pekka-thigh",
+        "left-hip",
+        135,
+        397,
+        55,
+        100
+      ],
+      [
+        "Coxa direita",
+        "pekka-thigh-mirror",
+        "right-hip",
+        210,
+        397,
+        55,
+        100
+      ],
+      [
+        "Perna esquerda",
+        "pekka-shin",
+        "left-knee",
+        130,
+        483,
+        65,
+        100
+      ],
+      [
+        "Perna direita",
+        "pekka-shin-mirror",
+        "right-knee",
+        205,
+        483,
+        65,
+        100
+      ],
+      [
+        "Pé esquerdo",
+        "pekka-foot",
+        "left-ankle",
+        123,
+        558,
+        75,
+        45
+      ],
+      [
+        "Pé direito",
+        "pekka-foot-mirror",
+        "right-ankle",
+        202,
+        558,
+        75,
+        45
+      ],
+      [
+        "Tronco completo",
+        "pekka-torso",
+        "torso",
+        110,
+        154,
+        180,
+        194
+      ],
+      [
+        "Quadril",
+        "pekka-hips",
+        "hips",
+        100,
+        320,
+        200,
+        137
+      ],
+      [
+        "Braço esquerdo",
+        "pekka-upper-arm",
+        "left-shoulder",
+        63,
+        197,
+        72,
+        106
+      ],
+      [
+        "Braço direito",
+        "pekka-upper-arm-mirror",
+        "right-shoulder",
+        265,
+        197,
+        72,
+        106
+      ],
+      [
+        "Ombreira esquerda",
+        "pekka-shoulder",
+        "left-shoulder",
+        40,
+        149,
+        110,
+        110
+      ],
+      [
+        "Ombreira direita",
+        "pekka-shoulder-mirror",
+        "right-shoulder",
+        250,
+        149,
+        110,
+        110
+      ],
+      [
+        "Antebraço esquerdo",
+        "pekka-forearm",
+        "left-elbow",
+        60,
+        280,
+        75,
+        105
+      ],
+      [
+        "Antebraço direito",
+        "pekka-forearm-mirror",
+        "right-elbow",
+        265,
+        280,
+        75,
+        105
+      ],
+      [
+        "Mão esquerda",
+        "pekka-hand",
+        "left-wrist",
+        65,
+        365,
+        65,
+        60
+      ],
+      [
+        "Mão direita",
+        "pekka-hand-mirror",
+        "right-wrist",
+        270,
+        365,
+        65,
+        60
+      ],
+      [
+        "Capacete e cabeça",
+        "pekka-head",
+        "head",
+        95,
+        18,
+        210,
+        155
+      ]
+    ],
+    "archer": [
+      [
+        "Capa",
+        "archer-cape",
+        "torso",
+        97,
+        155,
+        206,
+        260
+      ],
+      [
+        "Aljava",
+        "archer-quiver",
+        "torso",
+        247,
+        260,
+        58,
+        132
+      ],
+      [
+        "Coxa esquerda · extensão manual",
+        "archer-thigh",
+        "left-hip",
+        150,
+        337,
+        47,
+        100
+      ],
+      [
+        "Coxa direita · extensão manual",
+        "archer-thigh-mirror",
+        "right-hip",
+        203,
+        337,
+        47,
+        100
+      ],
+      [
+        "Perna esquerda",
+        "archer-shin",
+        "left-knee",
+        149,
+        420,
+        47,
+        108
+      ],
+      [
+        "Perna direita",
+        "archer-shin-mirror",
+        "right-knee",
+        204,
+        420,
+        47,
+        108
+      ],
+      [
+        "Pé esquerdo",
+        "archer-foot",
+        "left-ankle",
+        140,
+        505,
+        64,
+        45
+      ],
+      [
+        "Pé direito",
+        "archer-foot-mirror",
+        "right-ankle",
+        196,
+        505,
+        64,
+        45
+      ],
+      [
+        "Tronco completo",
+        "archer-torso",
+        "torso",
+        135,
+        158,
+        130,
+        155
+      ],
+      [
+        "Saia e quadril",
+        "archer-skirt",
+        "hips",
+        127,
+        293,
+        146,
+        91
+      ],
+      [
+        "Braço esquerdo",
+        "archer-upper-arm",
+        "left-shoulder",
+        108,
+        194,
+        48,
+        92
+      ],
+      [
+        "Braço direito",
+        "archer-upper-arm-mirror",
+        "right-shoulder",
+        244,
+        194,
+        48,
+        92
+      ],
+      [
+        "Antebraço esquerdo",
+        "archer-forearm",
+        "left-elbow",
+        99,
+        266,
+        45,
+        89
+      ],
+      [
+        "Antebraço direito",
+        "archer-forearm-mirror",
+        "right-elbow",
+        256,
+        266,
+        45,
+        89
+      ],
+      [
+        "Mão esquerda",
+        "archer-hand",
+        "left-wrist",
+        94,
+        344,
+        50,
+        41
+      ],
+      [
+        "Mão direita",
+        "archer-hand-mirror",
+        "right-wrist",
+        256,
+        344,
+        50,
+        41
+      ],
+      [
+        "Cabeça e cabelo",
+        "archer-head",
+        "head",
+        128,
+        30,
+        144,
+        140
+      ]
+    ]
+  },
+  "joints": {
+    "pekka": {
+      "hips": [
+        200,
+        365
+      ],
+      "torso": [
+        200,
+        235
+      ],
+      "neck": [
+        200,
+        164
+      ],
+      "head": [
+        200,
+        108
+      ],
+      "left-shoulder": [
+        100,
+        190
+      ],
+      "left-elbow": [
+        98,
+        285
+      ],
+      "left-wrist": [
+        98,
+        387
+      ],
+      "right-shoulder": [
+        300,
+        190
+      ],
+      "right-elbow": [
+        302,
+        285
+      ],
+      "right-wrist": [
+        302,
+        387
+      ],
+      "left-hip": [
+        163,
+        405
+      ],
+      "left-knee": [
+        163,
+        490
+      ],
+      "left-ankle": [
+        163,
+        575
+      ],
+      "right-hip": [
+        237,
+        405
+      ],
+      "right-knee": [
+        237,
+        490
+      ],
+      "right-ankle": [
+        237,
+        575
+      ]
+    },
+    "archer": {
+      "hips": [
+        200,
+        330
+      ],
+      "torso": [
+        200,
+        230
+      ],
+      "neck": [
+        200,
+        169
+      ],
+      "head": [
+        200,
+        110
+      ],
+      "left-shoulder": [
+        132,
+        207
+      ],
+      "left-elbow": [
+        122,
+        274
+      ],
+      "left-wrist": [
+        119,
+        357
+      ],
+      "right-shoulder": [
+        268,
+        207
+      ],
+      "right-elbow": [
+        278,
+        274
+      ],
+      "right-wrist": [
+        281,
+        357
+      ],
+      "left-hip": [
+        174,
+        347
+      ],
+      "left-knee": [
+        174,
+        429
+      ],
+      "left-ankle": [
+        174,
+        523
+      ],
+      "right-hip": [
+        226,
+        347
+      ],
+      "right-knee": [
+        226,
+        429
+      ],
+      "right-ankle": [
+        226,
+        523
+      ]
+    }
+  }
+}
